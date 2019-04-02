@@ -4,8 +4,9 @@ namespace App\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class WelcomeController
+class WelcomeController extends AbstractController
 {
     /**
      * @Route("/hello", name="hello")
@@ -13,9 +14,12 @@ class WelcomeController
     public function hello()
     {
         $name = 'Romeo';
+
         dump($name);
-        return new Response(
-            '<html><body>Hello Romeo</body></html>'
-        );
+
+        return $this->render('Welcome/hello.html.twig', [
+            'name' => $name
+        ]);
+
     }
 }
